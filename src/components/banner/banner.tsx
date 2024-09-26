@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 function Banner(): JSX.Element {
   return (
     <div className="banner">
@@ -9,7 +11,7 @@ function Banner(): JSX.Element {
         <span className="banner__message">Новинка!</span>
         <span className="title title--h1">Cannonball&nbsp;Pro&nbsp;MX&nbsp;8i</span>
         <span className="banner__text">Профессиональная камера от&nbsp;известного производителя</span>
-        <a className="btn" href="#">Подробнее</a>
+        <Link className="btn" to="#">Подробнее</Link>
       </p>
     </div>
   );

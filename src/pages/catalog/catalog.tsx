@@ -1,3 +1,6 @@
+import { Link } from 'react-router-dom';
+import { AppRoute } from '../../const';
+
 function Catalog(): JSX.Element {
   return (
     <section className="catalog">
@@ -47,7 +50,8 @@ function Catalog(): JSX.Element {
                 </div>
                 <div className="product-card__buttons">
                   <button className="btn btn--purple product-card__btn" type="button">Купить</button>
-                  <a className="btn btn--transparent" href="#">Подробнее</a>
+                  {/* ! Уточни Роут - добавь id товара */}
+                  <Link className="btn btn--transparent" to={AppRoute.Product}>Подробнее</Link>
                 </div>
               </div>
             </div>
