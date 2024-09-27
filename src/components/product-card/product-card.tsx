@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import { Camera } from '../../types/camera';
 import Rate from '../rate/rate';
+import ProductImage from '../product-image/product-image';
 
 type ProductCardProps = {
   product: Camera;
@@ -13,10 +14,7 @@ function ProductCard({product}: ProductCardProps): JSX.Element {
   return (
     <div className="product-card">
       <div className="product-card__img">
-        <picture>
-          <source type="image/webp" srcSet={`${previewImgWebp}, ${previewImgWebp2x} 2x`}></source>
-          <img src={previewImg} srcSet={`${previewImg2x} 2x`} width="280" height="240" alt={name}></img>
-        </picture>
+        <ProductImage previewImg={previewImg} previewImg2x={previewImg2x} previewImgWebp={previewImgWebp} previewImgWebp2x={previewImgWebp2x} name={name} />
       </div>
       <div className="product-card__info">
         <Rate rating={rating} reviewCount={reviewCount} />
