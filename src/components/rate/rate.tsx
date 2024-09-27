@@ -1,5 +1,6 @@
 import { Star, rateStars } from './const';
 import { Camera } from '../../types/camera';
+import { ClassName } from '../../const';
 
 type RateStarProps = {
   isFull?: boolean;
@@ -18,10 +19,10 @@ type RateProps = Pick<Camera, 'rating' | 'reviewCount'> & {
 }
 
 function Rate({rating, reviewCount, isCard}: RateProps): JSX.Element {
-  const extraClassName = isCard ? 'product-card__rate' : 'product__rate';
+  const extraName = isCard ? ClassName.Card : ClassName.Product;
 
   return (
-    <div className={`rate ${extraClassName}`}>
+    <div className={`rate ${extraName}__rate`}>
 
       {rateStars.map((id, index) => index < rating ? <RateStar key={id} isFull /> : <RateStar key={id} />)}
 
