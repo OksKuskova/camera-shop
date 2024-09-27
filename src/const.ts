@@ -14,3 +14,8 @@ export const ImageSize = {
     CARD: 240,
   },
 } as const;
+
+export const ClassName = {
+  Product: 'product',
+  Card: 'product-card',
+} as const;

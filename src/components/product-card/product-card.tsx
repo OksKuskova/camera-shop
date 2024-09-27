@@ -3,6 +3,7 @@ import { AppRoute } from '../../const';
 import { Camera } from '../../types/camera';
 import Rate from '../rate/rate';
 import ProductImage from '../product-image/product-image';
+import Price from '../price/price';
 
 type ProductCardProps = {
   product: Camera;
@@ -19,9 +20,7 @@ function ProductCard({product}: ProductCardProps): JSX.Element {
       <div className="product-card__info">
         <Rate rating={rating} reviewCount={reviewCount} isCard/>
         <p className="product-card__title">{name}</p>
-        <p className="product-card__price">
-          <span className="visually-hidden">Цена:</span>{`${price} ₽`}
-        </p>
+        <Price price={price} />
       </div>
       <div className="product-card__buttons">
         <button className="btn btn--purple product-card__btn" type="button">Купить</button>
