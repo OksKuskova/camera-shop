@@ -9,8 +9,8 @@ type ProductImageProps = Pick<Camera, 'previewImgWebp'| 'previewImgWebp2x' | 'pr
 function ProductImage({previewImgWebp, previewImgWebp2x, previewImg, previewImg2x, name}: ProductImageProps): JSX.Element {
   const { pathname } = useLocation();
 
-  const width = pathname === AppRoute.Product ? Width.PRODUCT : Width.CARD;
-  const height = pathname === AppRoute.Product ? Height.PRODUCT : Height.CARD;
+  const width = pathname === AppRoute.Root ? Width.CARD : Width.PRODUCT;
+  const height = pathname === AppRoute.Root ? Height.CARD : Height.PRODUCT;
 
   return (
     <picture>

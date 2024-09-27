@@ -17,7 +17,7 @@ function ProductCard({product}: ProductCardProps): JSX.Element {
         <ProductImage previewImg={previewImg} previewImg2x={previewImg2x} previewImgWebp={previewImgWebp} previewImgWebp2x={previewImgWebp2x} name={name} />
       </div>
       <div className="product-card__info">
-        <Rate rating={rating} reviewCount={reviewCount} />
+        <Rate rating={rating} reviewCount={reviewCount} isCard/>
         <p className="product-card__title">{name}</p>
         <p className="product-card__price">
           <span className="visually-hidden">Цена:</span>{`${price} ₽`}
