@@ -3,7 +3,13 @@ import { Review } from '../../types/review';
 import { humanizeDate } from '../../utils';
 import Rate from '../rate/rate';
 
-function ReviewCard({ userName, createAt, rating, advantage, disadvantage, review }: Review): JSX.Element {
+type ReviewCardProps = {
+  userReview: Omit<Review, 'id' | 'cameraId'>;
+}
+
+function ReviewCard({ userReview }: ReviewCardProps): JSX.Element {
+  const { userName, createAt, rating, advantage, disadvantage, review } = userReview;
+
   return (
     <li className="review-card">
       <div className="review-card__head">
