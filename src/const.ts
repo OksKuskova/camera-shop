@@ -19,7 +19,7 @@ export enum ClassName {
   Product = 'product',
   Card = 'product-card',
   Review = 'review-card',
-};
+}
 
 export const DateFormat = {
   DayMonth: 'DD MMMM',
