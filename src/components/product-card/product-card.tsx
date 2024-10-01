@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { AppRoute } from '../../const';
+import { AppRoute, ClassName } from '../../const';
 import { Camera } from '../../types/camera';
 import Rate from '../rate/rate';
 import ProductImage from '../product-image/product-image';
@@ -18,7 +18,7 @@ function ProductCard({product}: ProductCardProps): JSX.Element {
         <ProductImage previewImg={previewImg} previewImg2x={previewImg2x} previewImgWebp={previewImgWebp} previewImgWebp2x={previewImgWebp2x} name={name} />
       </div>
       <div className="product-card__info">
-        <Rate rating={rating} reviewCount={reviewCount} isCard/>
+        <Rate rating={rating} reviewCount={reviewCount} className={ClassName.Card}/>
         <p className="product-card__title">{name}</p>
         <Price price={price} />
       </div>

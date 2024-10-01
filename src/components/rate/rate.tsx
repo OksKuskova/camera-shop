@@ -1,5 +1,4 @@
 import { Star, rateStars } from './const';
-import { Camera } from '../../types/camera';
 import { ClassName } from '../../const';
 
 type RateStarProps = {
@@ -14,22 +13,30 @@ function RateStar({isFull}: RateStarProps): JSX.Element {
   );
 }
 
-type RateProps = Pick<Camera, 'rating' | 'reviewCount'> & {
-  isCard?: boolean;
+type RateProps = {
+  rating: number;
+  reviewCount?: number;
+  className: ClassName;
 }
 
-function Rate({rating, reviewCount, isCard}: RateProps): JSX.Element {
-  const extraName = isCard ? ClassName.Card : ClassName.Product;
+function Rate({rating, reviewCount, className}: RateProps): JSX.Element {
+
+  const isReview = className === ClassName.Review;
 
   return (
-    <div className={`rate ${extraName}__rate`}>
+    <div className={`rate ${className}__rate`}>
 
       {rateStars.map((id, index) => index < rating ? <RateStar key={id} isFull /> : <RateStar key={id} />)}
 
-      <p className="visually-hidden">{`Рейтинг: ${rating}`}</p>
-      <p className="rate__count">
-        <span className="visually-hidden">Всего оценок:</span>{reviewCount}
-      </p>
+      <p className="visually-hidden">{`${isReview ? 'Оценка' : 'Рейтинг'}: ${rating}`}</p>
+
+      {
+        isReview ? '' : (
+          <p className="rate__count">
+            <span className="visually-hidden">Всего оценок:</span>{reviewCount}
+          </p>
+        )
+      }
     </div>
   );
 }

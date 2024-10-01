@@ -15,7 +15,13 @@ export const ImageSize = {
   },
 } as const;
 
-export const ClassName = {
-  Product: 'product',
-  Card: 'product-card',
+export enum ClassName {
+  Product = 'product',
+  Card = 'product-card',
+  Review = 'review-card',
+};
+
+export const DateFormat = {
+  DayMonth: 'DD MMMM',
+  YearMonthDay: 'YYYY-MM-DD',
 } as const;
