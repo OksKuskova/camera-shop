@@ -19,16 +19,14 @@ function Product(): JSX.Element {
     return <NotFound />;
   }
 
-  const { id, name, vendorCode, type, category, description, level, price, rating, reviewCount, previewImg, previewImg2x, previewImgWebp, previewImgWebp2x } = currentProduct;
+  const { name, vendorCode, type, category, description, level, price, rating, reviewCount, previewImg, previewImg2x, previewImgWebp, previewImgWebp2x } = currentProduct;
 
   return (
     <>
       <div className="page-content__section">
         <section className="product">
           <div className="container">
-            <div className="product__img">
-              <ProductImage previewImg={previewImg} previewImg2x={previewImg2x} previewImgWebp={previewImgWebp} previewImgWebp2x={previewImgWebp2x} name={name} />
-            </div>
+            <ProductImage previewImg={previewImg} previewImg2x={previewImg2x} previewImgWebp={previewImgWebp} previewImgWebp2x={previewImgWebp2x} name={name} className={ClassName.Product}/>
             <div className="product__content">
               <h1 className="title title--h3">{name}</h1>
               <Rate rating={rating} reviewCount={reviewCount} className={ClassName.Product}/>
