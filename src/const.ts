@@ -1,3 +1,16 @@
+export enum RequestStatus {
+  Idle = 'idle',
+  Loading = 'loading',
+  Success = 'success',
+  Failed = 'failed',
+}
+
+export enum ClassName {
+  Product = 'product',
+  Card = 'product-card',
+  Review = 'review-card',
+}
+
 export const AppRoute = {
   Root: '/',
   Product: '/camera/:id',
@@ -14,12 +27,6 @@ export const ImageSize = {
     CARD: 240,
   },
 } as const;
-
-export enum ClassName {
-  Product = 'product',
-  Card = 'product-card',
-  Review = 'review-card',
-}
 
 export const DateFormat = {
   DayMonth: 'DD MMMM',

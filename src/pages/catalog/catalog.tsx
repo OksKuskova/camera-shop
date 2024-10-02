@@ -1,8 +1,8 @@
-import { getCameras } from '../../mocks/cameras';
 import ProductCard from '../../components/product-card/product-card';
+import { useProducts } from '../../hooks/use-products';
 
 function Catalog(): JSX.Element {
-  const products = getCameras();
+  const { products } = useProducts();
 
   return (
     <section className="catalog">
