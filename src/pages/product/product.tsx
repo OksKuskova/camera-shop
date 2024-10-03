@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 // import { getProductById } from '../../mocks/cameras';
-import { getReviews } from '../../mocks/reviews';
+// import { getReviews } from '../../mocks/reviews';
 import { ClassName } from '../../const';
 import NotFound from '../not-found/not-found';
 import ProductImage from '../../components/product-image/product-image';
@@ -12,8 +12,8 @@ import { useProduct } from '../../hooks/use-product';
 
 function Product(): JSX.Element {
   const { id: productId } = useParams();
-  const { currentProduct, isRequestFailed } = useProduct(Number(productId));
-  const reviews = getReviews();
+  const { currentProduct, reviews, isRequestFailed } = useProduct(Number(productId));
+  // const reviews = getReviews();
 
   if (!currentProduct || isRequestFailed) {
     return <NotFound />;
@@ -49,7 +49,7 @@ function Product(): JSX.Element {
               <h2 className="title title--h3">Отзывы</h2>
               {/* <button className="btn" type="button">Оставить свой отзыв</button> */}
             </div>
-            {/* <ReviewBlock reviews={reviews}/> */}
+            <ReviewBlock reviews={reviews}/>
             <div className="review-block__buttons">
               <button className="btn btn--purple" type="button">Показать больше отзывов</button>
             </div>

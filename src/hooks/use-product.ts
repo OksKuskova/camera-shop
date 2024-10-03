@@ -1,8 +1,10 @@
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '.';
-import { getCurrentProductInfo, getStatus } from '../slices/product/product';
 import { RequestStatus } from '../const';
+import { getCurrentProductInfo, getStatus } from '../slices/product/product';
+import { getReviews } from '../slices/reviews/reviews';
 import { fetchProduct } from '../thunk-actions/product';
+import { fetchReviews } from '../thunk-actions/reviews';
 import { Camera } from '../types/camera';
 
 export function useProduct(id: Camera['id']) {
@@ -10,13 +12,15 @@ export function useProduct(id: Camera['id']) {
 
   const currentProduct = useAppSelector(getCurrentProductInfo);
   const requestStatus = useAppSelector(getStatus);
+  const reviews = useAppSelector(getReviews);
 
   useEffect(() => {
-    dispatch(fetchProduct(id));
+    Promise.all([dispatch(fetchProduct(id)), dispatch(fetchReviews(id))]);
   }, [dispatch, id]);
 
   return {
     currentProduct,
+    reviews,
     isRequestFailed: requestStatus === RequestStatus.Failed,
   };
 }
