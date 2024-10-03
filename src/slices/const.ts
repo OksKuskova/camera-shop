@@ -1,3 +1,4 @@
 export const SliceName = {
-  Products: 'products',
+  Catalog: 'catalog',
+  Product: 'product',
 } as const;

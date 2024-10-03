@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '.';
-import { getProducts, getStatus } from '../slices/products/products';
+import { getProducts, getStatus } from '../slices/catalog/catalog';
 import { RequestStatus } from '../const';
-import { fetchProducts } from '../thunk-actions/products';
+import { fetchCatalog } from '../thunk-actions/catalog';
 
-export function useProducts() {
+export function useCatalog() {
   const dispatch = useAppDispatch();
 
   const products = useAppSelector(getProducts);
@@ -12,7 +12,7 @@ export function useProducts() {
 
   useEffect(() => {
     if (requestStatus === RequestStatus.Idle) {
-      dispatch(fetchProducts());
+      dispatch(fetchCatalog());
     }
   });
 

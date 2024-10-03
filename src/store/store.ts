@@ -1,11 +1,13 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { createApi } from './api';
-import productsSlice from '../slices/products/products';
+import catalogSlice from '../slices/catalog/catalog';
+import productSlice from '../slices/product/product';
 
 const api = createApi();
 
 const reducer = combineReducers({
-  [productsSlice.name]: productsSlice.reducer,
+  [catalogSlice.name]: catalogSlice.reducer,
+  [productSlice.name]: productSlice.reducer,
 });
 
 export const store = configureStore({

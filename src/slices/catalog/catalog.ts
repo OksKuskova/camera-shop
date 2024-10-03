@@ -2,39 +2,39 @@ import { createSlice } from '@reduxjs/toolkit';
 import { SliceName } from '../const';
 import { Camera } from '../../types/camera';
 import { RequestStatus } from '../../const';
-import { fetchProducts } from '../../thunk-actions/products';
+import { fetchCatalog } from '../../thunk-actions/catalog';
 import { State } from '../../store/type';
 
-type ProductsState = {
+type CatalogState = {
   products: Camera[];
   requestStatus: RequestStatus;
 }
 
-const initialState: ProductsState = {
+const initialState: CatalogState = {
   products: [],
   requestStatus: RequestStatus.Idle,
 };
 
-const productsSlice = createSlice({
-  name: SliceName.Products,
+const catalogSlice = createSlice({
+  name: SliceName.Catalog,
   initialState,
   reducers: {},
   extraReducers(builder) {
     builder
-      .addCase(fetchProducts.pending, (state) => {
+      .addCase(fetchCatalog.pending, (state) => {
         state.requestStatus = RequestStatus.Loading;
       })
-      .addCase(fetchProducts.fulfilled, (state, action) => {
+      .addCase(fetchCatalog.fulfilled, (state, action) => {
         state.products = action.payload;
         state.requestStatus = RequestStatus.Success;
       })
-      .addCase(fetchProducts.rejected, (state) => {
+      .addCase(fetchCatalog.rejected, (state) => {
         state.requestStatus = RequestStatus.Failed;
       });
   },
 });
 
-export const getProducts = (state: State) => state[SliceName.Products].products;
-export const getStatus = (state: State) => state[SliceName.Products].requestStatus;
+export const getProducts = (state: State) => state[SliceName.Catalog].products;
+export const getStatus = (state: State) => state[SliceName.Catalog].requestStatus;
 // export const {} = counterSlice.actions;
-export default productsSlice;
+export default catalogSlice;

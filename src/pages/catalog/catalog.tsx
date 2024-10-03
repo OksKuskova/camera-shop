@@ -1,8 +1,8 @@
 import ProductCard from '../../components/product-card/product-card';
-import { useProducts } from '../../hooks/use-products';
+import { useCatalog } from '../../hooks/use-catalog';
 
 function Catalog(): JSX.Element {
-  const { products } = useProducts();
+  const { products } = useCatalog();
 
   return (
     <section className="catalog">
