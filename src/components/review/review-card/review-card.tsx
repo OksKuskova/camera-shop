@@ -1,7 +1,7 @@
-import { ClassName, DateFormat } from '../../const';
-import { Review } from '../../types/review';
-import { humanizeDate } from '../../utils';
-import Rate from '../rate/rate';
+import { ClassName, DateFormat } from '../../../const';
+import { Review } from '../../../types/review';
+import { humanizeDate } from '../../../utils';
+import Rate from '../../rate/rate';
 
 type ReviewCardProps = {
   userReview: Omit<Review, 'id' | 'cameraId'>;

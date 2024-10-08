@@ -1,25 +1,24 @@
 import { useParams } from 'react-router-dom';
-// import { getProductById } from '../../mocks/cameras';
-// import { getReviews } from '../../mocks/reviews';
 import { ClassName } from '../../const';
+import { useProduct } from '../../hooks/use-product';
 import NotFound from '../not-found/not-found';
 import ProductImage from '../../components/product-image/product-image';
 import Rate from '../../components/rate/rate';
 import Price from '../../components/price/price';
 import ProductTabs from '../../components/product-tabs/product-tabs';
-import ReviewBlock from '../../components/review-block/review-block';
-import { useProduct } from '../../hooks/use-product';
+import ReviewBlock from '../../components/review/review-block/review-block';
+
 
 function Product(): JSX.Element {
   const { id: productId } = useParams();
-  const { currentProduct, reviews, isRequestFailed } = useProduct(Number(productId));
+  const { currentProduct, isRequestFailed } = useProduct(Number(productId));
   // const reviews = getReviews();
 
   if (!currentProduct || isRequestFailed) {
     return <NotFound />;
   }
 
-  const { name, vendorCode, type, category, description, level, price, rating, reviewCount, previewImg, previewImg2x, previewImgWebp, previewImgWebp2x } = currentProduct;
+  const { id, name, vendorCode, type, category, description, level, price, rating, reviewCount, previewImg, previewImg2x, previewImgWebp, previewImgWebp2x } = currentProduct;
 
   return (
     <>
@@ -43,18 +42,7 @@ function Product(): JSX.Element {
       </div>
       {/* div className="page-content__section" */}
       <div className="page-content__section">
-        <section className="review-block">
-          <div className="container">
-            <div className="page-content__headed">
-              <h2 className="title title--h3">Отзывы</h2>
-              {/* <button className="btn" type="button">Оставить свой отзыв</button> */}
-            </div>
-            <ReviewBlock reviews={reviews}/>
-            <div className="review-block__buttons">
-              <button className="btn btn--purple" type="button">Показать больше отзывов</button>
-            </div>
-          </div>
-        </section>
+        <ReviewBlock productId={id}/>
       </div>
     </>
   );
