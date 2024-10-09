@@ -4,10 +4,12 @@ import Layout from '../layout/layout';
 import Catalog from '../../pages/catalog/catalog';
 import Product from '../../pages/product/product';
 import NotFound from '../../pages/not-found/not-found';
+import ScrollToTop from '../scroll-to-top/scroll-to-top';
 
 function App(): JSX.Element {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route path={AppRoute.Root} element={<Layout />}>
           <Route index element={<Catalog />} />
