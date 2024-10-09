@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useReviews } from '../../../hooks/use-reviews';
 import { Camera } from '../../../types/camera';
 import { ShownReviews } from '../const';
@@ -9,15 +9,29 @@ type ReviewBlockProps = {
 }
 
 function ReviewBlock({ productId }: ReviewBlockProps): JSX.Element {
-  const [shownReviewsNumber, setShownReviewsNumber] = useState<number>(ShownReviews.Default);
-
-  const handleButtonClick = () => {
-    setShownReviewsNumber(shownReviewsNumber + ShownReviews.Step);
-  };
+  const [shownReviewsCount, setShownReviewsCount] = useState(ShownReviews.DefaultCount);
 
   const { reviews } = useReviews(Number(productId));
 
-  const allReviewsShown = shownReviewsNumber >= reviews.length;
+  const hasMoreReviews = useCallback(() => shownReviewsCount < reviews.length, [shownReviewsCount, reviews]);
+
+  const handleButtonClick = () => {
+    setShownReviewsCount(shownReviewsCount + ShownReviews.Step);
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.innerHeight + document.documentElement.scrollTop === document.documentElement.offsetHeight && hasMoreReviews()) {
+        setShownReviewsCount(shownReviewsCount + ShownReviews.Step);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [shownReviewsCount, hasMoreReviews]);
 
   return (
     <section className="review-block">
@@ -26,8 +40,8 @@ function ReviewBlock({ productId }: ReviewBlockProps): JSX.Element {
           <h2 className="title title--h3">Отзывы</h2>
           {/* <button className="btn" type="button">Оставить свой отзыв</button> */}
         </div>
-        <ReviewList reviews={reviews.slice(0, shownReviewsNumber)}/>
-        <div className="review-block__buttons" style={allReviewsShown ? {display: 'none'} : {}}>
+        <ReviewList reviews={reviews.slice(0, shownReviewsCount)}/>
+        <div className="review-block__buttons" style={!hasMoreReviews() ? {display: 'none'} : {}}>
           <button className="btn btn--purple" type="button" onClick={handleButtonClick}>Показать больше отзывов</button>
         </div>
       </div>

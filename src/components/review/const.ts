@@ -1,4 +1,4 @@
 export const ShownReviews = {
-  Default: 3,
+  DefaultCount: 3,
   Step: 3,
 };
