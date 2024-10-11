@@ -8,7 +8,6 @@ import Price from '../../components/price/price';
 import ProductTabs from '../../components/product-tabs/product-tabs';
 import ReviewBlock from '../../components/review/review-block/review-block';
 
-
 function Product(): JSX.Element {
   const { id: productId } = useParams();
   const { currentProduct, isRequestFailed } = useProduct(Number(productId));
@@ -29,7 +28,7 @@ function Product(): JSX.Element {
             <div className="product__content">
               <h1 className="title title--h3">{name}</h1>
               <Rate rating={rating} reviewCount={reviewCount} className={ClassName.Product}/>
-              <Price price={price} />
+              <Price price={price} className={ClassName.Product} />
               <button className="btn btn--purple" type="button">
                 <svg width="24" height="16" aria-hidden="true">
                   <use xlinkHref="#icon-add-basket"></use>

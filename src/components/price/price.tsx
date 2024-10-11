@@ -1,15 +1,17 @@
-import { useLocation } from 'react-router-dom';
+// import { useLocation } from 'react-router-dom';
 import { Camera } from '../../types/camera';
-import { AppRoute, ClassName } from '../../const';
+import { ClassName } from '../../const';
 
-type PriceProps = Pick<Camera, 'price'>
+type PriceProps = Pick<Camera, 'price'> & {
+  className: ClassName;
+}
 
-function Price({ price }: PriceProps): JSX.Element {
-  const { pathname } = useLocation();
-  const name = pathname === AppRoute.Root ? ClassName.Card : ClassName.Product;
+function Price({ price, className }: PriceProps): JSX.Element {
+  // const { pathname } = useLocation();
+  // const name = pathname === AppRoute.Root ? ClassName.Card : ClassName.Product;
 
   return (
-    <p className={`${name}__price`}>
+    <p className={`${className}__price`}>
       <span className="visually-hidden">Цена:</span>{`${price} ₽`}
     </p>
   );
