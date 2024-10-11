@@ -1,35 +1,16 @@
 import { Link, Outlet } from 'react-router-dom';
 import { AppRoute } from '../../const';
+import UpButton from '../up-button/up-button';
+import Modal from '../modal/modal';
+import Header from '../header/header';
+import { useModal } from '../../hooks/use-modal';
 
 function Layout(): JSX.Element {
+  const { isActive } = useModal();
+
   return (
     <div className="wrapper">
-      <header className="header" id="header">
-        <div className="container">
-          <a className="header__logo" href="index.html" aria-label="Переход на главную">
-            <svg width="100" height="36" aria-hidden="true">
-              <use xlinkHref="#icon-logo"></use>
-            </svg>
-          </a>
-          <nav className="main-nav header__main-nav">
-            <ul className="main-nav__list">
-              <li className="main-nav__item">
-                <Link className="main-nav__link" to={AppRoute.Root}>Каталог</Link>
-              </li>
-              <li className="main-nav__item">
-                <Link className="main-nav__link" to="#">Гарантии</Link>
-              </li>
-              <li className="main-nav__item">
-                <Link className="main-nav__link" to="#">Доставка</Link>
-              </li>
-              <li className="main-nav__item">
-                <Link className="main-nav__link" to="#">О компании</Link>
-              </li>
-            </ul>
-          </nav>
-          {/* div class="form-search" */}
-        </div>
-      </header>
+      <Header />
       <main>
         {/* banner */}
         <div className="page-content">
@@ -38,7 +19,13 @@ function Layout(): JSX.Element {
           <Outlet />
 
         </div>
+
+        {isActive && <Modal />}
+
       </main>
+
+      <UpButton />
+
       <footer className="footer">
         <div className="container">
           <div className="footer__info">
