@@ -4,13 +4,22 @@ import { Camera } from '../../types/camera';
 import Rate from '../rate/rate';
 import ProductImage from '../product-image/product-image';
 import Price from '../price/price';
+import { useAppDispatch } from '../../hooks';
+import { toggleActiveStatus, setActiveProductId } from '../../slices/modal/modal';
 
 type ProductCardProps = {
   product: Camera;
 }
 
 function ProductCard({product}: ProductCardProps): JSX.Element {
+  const dispatch = useAppDispatch();
+
   const { id, name, price, rating, reviewCount, previewImg, previewImg2x, previewImgWebp, previewImgWebp2x } = product;
+
+  const handlePopupOpen = (productId: number) => {
+    dispatch(toggleActiveStatus());
+    dispatch(setActiveProductId(productId));
+  };
 
   return (
     <div className="product-card">
@@ -18,11 +27,10 @@ function ProductCard({product}: ProductCardProps): JSX.Element {
       <div className="product-card__info">
         <Rate rating={rating} reviewCount={reviewCount} className={ClassName.Card}/>
         <p className="product-card__title">{name}</p>
-        <Price price={price} />
+        <Price price={price} className={ClassName.Card} />
       </div>
       <div className="product-card__buttons">
-        <button className="btn btn--purple product-card__btn" type="button">Купить</button>
-        {/* ! Уточни Роут - добавь id товара */}
+        <button className="btn btn--purple product-card__btn" type="button" onClick={() => handlePopupOpen(id)}>Купить</button>
         <Link className="btn btn--transparent" to={AppRoute.Product.replace(':id', `${id}`)}>Подробнее</Link>
       </div>
     </div>
