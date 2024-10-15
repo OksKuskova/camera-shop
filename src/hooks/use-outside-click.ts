@@ -1,6 +1,6 @@
-import { useEffect } from 'react';
+import { RefObject, useEffect } from 'react';
 
-export function useOutsideClick(ref: React.RefObject<HTMLDivElement>, handler: () => void) {
+export function useOutsideClick(ref: RefObject<HTMLDivElement>, handler: () => void) {
   useEffect(() => {
     const handleMousedown = (event: MouseEvent) => {
       if (!ref.current || ref.current.contains(event.target as Node)) {
