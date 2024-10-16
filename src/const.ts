@@ -48,3 +48,7 @@ export const InitialPhoneSymbol = {
   Eight: '8',
 } as const;
 
+export const BreadcrumbsName = {
+  Main: 'Главная',
+  Catalog: 'Каталог',
+};

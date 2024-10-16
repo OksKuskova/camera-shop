@@ -4,6 +4,7 @@ import UpButton from '../up-button/up-button';
 import Modal from '../modal/modal';
 import Header from '../header/header';
 import { useModal } from '../../hooks/use-modal';
+import Breadcrumbs from '../breadcrumbs/breadcrumbs';
 
 function Layout(): JSX.Element {
   const { isActive } = useModal();
@@ -14,7 +15,7 @@ function Layout(): JSX.Element {
       <main>
         {/* banner */}
         <div className="page-content">
-          {/* breadcrumbs */}
+          <Breadcrumbs />
 
           <Outlet />
 
