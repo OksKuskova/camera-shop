@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { AppRoute, BreadcrumbsName } from '../../const';
+import { AppRoute, Title } from '../../const';
 import { useAppSelector } from '../../hooks';
 import { getCurrentProductInfo } from '../../slices/product/product';
 
@@ -13,7 +13,7 @@ function Breadcrumbs(): JSX.Element {
   }
   const paths = pathname.split('/').filter((path) => path);
 
-  const breadcrumbs: Crumb[] = [{name: BreadcrumbsName.Main, to: AppRoute.Root}, {name: BreadcrumbsName.Catalog, to: AppRoute.Root}];
+  const breadcrumbs: Crumb[] = [{name: Title.Main, to: AppRoute.Root}, {name: Title.Catalog, to: AppRoute.Root}];
 
   if (paths.length) {
     if (paths[0] === AppRoute.Product.slice(1, 7) && currentProduct) {

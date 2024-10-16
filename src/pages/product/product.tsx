@@ -7,11 +7,11 @@ import Rate from '../../components/rate/rate';
 import Price from '../../components/price/price';
 import ProductTabs from '../../components/product-tabs/product-tabs';
 import ReviewBlock from '../../components/review/review-block/review-block';
+import { Helmet } from 'react-helmet-async';
 
 function Product(): JSX.Element {
   const { id: productId } = useParams();
   const { currentProduct, isRequestFailed } = useProduct(Number(productId));
-  // const reviews = getReviews();
 
   if (!currentProduct || isRequestFailed) {
     return <NotFound />;
@@ -23,6 +23,9 @@ function Product(): JSX.Element {
     <>
       <div className="page-content__section">
         <section className="product">
+          <Helmet>
+            <title>{name}</title>
+          </Helmet>
           <div className="container">
             <ProductImage previewImg={previewImg} previewImg2x={previewImg2x} previewImgWebp={previewImgWebp} previewImgWebp2x={previewImgWebp2x} name={name} className={ClassName.Product}/>
             <div className="product__content">

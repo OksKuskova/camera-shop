@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import { AppRoute } from '../../const';
 import Layout from '../layout/layout';
 import Catalog from '../../pages/catalog/catalog';
@@ -8,16 +9,18 @@ import ScrollToTop from '../scroll-to-top/scroll-to-top';
 
 function App(): JSX.Element {
   return (
-    <BrowserRouter>
-      <ScrollToTop />
-      <Routes>
-        <Route path={AppRoute.Root} element={<Layout />}>
-          <Route index element={<Catalog />} />
-          <Route path={AppRoute.Product} element={<Product />} />
-          <Route path={AppRoute.NotFound} element={<NotFound />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <HelmetProvider >
+      <BrowserRouter>
+        <ScrollToTop />
+        <Routes>
+          <Route path={AppRoute.Root} element={<Layout />}>
+            <Route index element={<Catalog />} />
+            <Route path={AppRoute.Product} element={<Product />} />
+            <Route path={AppRoute.NotFound} element={<NotFound />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </HelmetProvider>
   );
 }
 

@@ -1,11 +1,17 @@
-import ProductCard from '../../components/product-card/product-card';
+import { Helmet } from 'react-helmet-async';
 import { useCatalog } from '../../hooks/use-catalog';
+import { Title } from '../../const';
+import ProductCard from '../../components/product-card/product-card';
+
 
 function Catalog(): JSX.Element {
   const { products } = useCatalog();
 
   return (
     <section className="catalog">
+      <Helmet>
+        <title>{Title.Catalog}</title>
+      </Helmet>
       <div className="container">
         <h1 className="title title--h2">Каталог фото- и видеотехники</h1>
         <div className="page-content__columns">
