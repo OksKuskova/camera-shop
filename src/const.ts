@@ -10,6 +10,7 @@ export enum ClassName {
   Card = 'product-card',
   Review = 'review-card',
   Basket = 'basket-item',
+  Banner = 'banner',
 }
 
 export const AppRoute = {
@@ -23,11 +24,13 @@ export const ImageSize = {
     PRODUCT: 560,
     CARD: 280,
     BASKET: 140,
+    BUNNER: 1280,
   },
   Height: {
     PRODUCT: 480,
     CARD: 240,
     BASKET: 120,
+    BUNNER: 280,
   },
 } as const;
 
