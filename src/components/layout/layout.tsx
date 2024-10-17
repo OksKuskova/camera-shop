@@ -1,19 +1,21 @@
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useLocation } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import UpButton from '../up-button/up-button';
 import Modal from '../modal/modal';
 import Header from '../header/header';
 import { useModal } from '../../hooks/use-modal';
 import Breadcrumbs from '../breadcrumbs/breadcrumbs';
+import Slider from '../slider/slider';
 
 function Layout(): JSX.Element {
   const { isActive } = useModal();
+  const { pathname } = useLocation();
 
   return (
     <div className="wrapper">
       <Header />
       <main>
-        {/* banner */}
+        {pathname === AppRoute.Root && <Slider />}
         <div className="page-content">
           <Breadcrumbs />
 
