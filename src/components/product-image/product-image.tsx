@@ -1,6 +1,7 @@
 import { Camera } from '../../types/camera';
 import { ClassName } from '../../const';
 import { getImageSize } from './utils';
+import Picture from '../picture/picture';
 
 
 type ProductImageProps = Pick<Camera, 'previewImgWebp'| 'previewImgWebp2x' | 'previewImg' | 'previewImg2x' | 'name'> & {
@@ -12,10 +13,7 @@ function ProductImage({previewImgWebp, previewImgWebp2x, previewImg, previewImg2
 
   return (
     <div className={`${className}__img`}>
-      <picture>
-        <source type="image/webp" srcSet={`/${previewImgWebp}, /${previewImgWebp2x} 2x`}></source>
-        <img src={`/${previewImg}`} srcSet={`/${previewImg2x} 2x`} width={width} height={height} alt={name}></img>
-      </picture>
+      <Picture name={name} previewImg={previewImg} previewImg2x={previewImg2x} previewImgWebp={previewImgWebp} previewImgWebp2x={previewImgWebp2x} width={width} height={height} />
     </div>
   );
 }

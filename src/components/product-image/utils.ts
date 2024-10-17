@@ -14,6 +14,11 @@ export const getImageSize = (className: ClassName) => {
         width: Width.BASKET,
         height: Height.BASKET,
       };
+    case ClassName.Banner:
+      return {
+        width: Width.BUNNER,
+        height: Height.BUNNER,
+      };
     default:
       return {
         width: Width.PRODUCT,
