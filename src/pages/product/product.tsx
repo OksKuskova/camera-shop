@@ -9,10 +9,15 @@ import Price from '../../components/price/price';
 import ProductTabs from '../../components/product-tabs/product-tabs';
 import ReviewBlock from '../../components/review/review-block/review-block';
 import Breadcrumbs from '../../components/breadcrumbs/breadcrumbs';
+import Loader from '../../components/loader/loader';
 
 function Product(): JSX.Element {
   const { id: productId } = useParams();
-  const { currentProduct, isRequestFailed } = useProduct(Number(productId));
+  const { currentProduct, isLoading, isRequestFailed } = useProduct(Number(productId));
+
+  if (isLoading) {
+    return <Loader />;
+  }
 
   if (!currentProduct || isRequestFailed) {
     return <NotFound />;

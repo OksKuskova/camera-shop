@@ -17,6 +17,7 @@ export function useProduct(id: Camera['id']) {
 
   return {
     currentProduct,
+    isLoading: requestStatus === RequestStatus.Loading,
     isRequestFailed: requestStatus === RequestStatus.Failed,
   };
 }

@@ -3,9 +3,14 @@ import { useCatalog } from '../../hooks/use-catalog';
 import { Title } from '../../const';
 import ProductCard from '../../components/product-card/product-card';
 import Breadcrumbs from '../../components/breadcrumbs/breadcrumbs';
+import Loader from '../../components/loader/loader';
 
 function Catalog(): JSX.Element {
-  const { products } = useCatalog();
+  const { products, isLoading } = useCatalog();
+
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
     <>

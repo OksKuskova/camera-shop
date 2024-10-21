@@ -21,6 +21,6 @@ export function useCatalog() {
   return {
     products,
     promo,
-    requestStatus,
+    isLoading: requestStatus === RequestStatus.Loading,
   };
 }
