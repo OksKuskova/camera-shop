@@ -4,7 +4,6 @@ import { useModal } from '../../hooks/use-modal';
 import UpButton from '../up-button/up-button';
 import Modal from '../modal/modal';
 import Header from '../header/header';
-import Breadcrumbs from '../breadcrumbs/breadcrumbs';
 import SliderPromo from '../slider-promo/slider-promo';
 
 function Layout(): JSX.Element {
@@ -14,10 +13,11 @@ function Layout(): JSX.Element {
   return (
     <div className="wrapper">
       <Header />
+
       <main>
         {pathname === AppRoute.Root && <SliderPromo />}
+
         <div className="page-content">
-          <Breadcrumbs />
 
           <Outlet />
 

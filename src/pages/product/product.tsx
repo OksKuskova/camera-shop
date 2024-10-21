@@ -1,13 +1,14 @@
 import { useParams } from 'react-router-dom';
 import { ClassName } from '../../const';
 import { useProduct } from '../../hooks/use-product';
+import { Helmet } from 'react-helmet-async';
 import NotFound from '../not-found/not-found';
 import ProductImage from '../../components/product-image/product-image';
 import Rate from '../../components/rate/rate';
 import Price from '../../components/price/price';
 import ProductTabs from '../../components/product-tabs/product-tabs';
 import ReviewBlock from '../../components/review/review-block/review-block';
-import { Helmet } from 'react-helmet-async';
+import Breadcrumbs from '../../components/breadcrumbs/breadcrumbs';
 
 function Product(): JSX.Element {
   const { id: productId } = useParams();
@@ -21,6 +22,7 @@ function Product(): JSX.Element {
 
   return (
     <>
+      <Breadcrumbs />
       <div className="page-content__section">
         <section className="product">
           <Helmet>
