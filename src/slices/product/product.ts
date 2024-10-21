@@ -36,5 +36,5 @@ const productSlice = createSlice({
 
 export const getCurrentProductInfo = (state: State) => state[SliceName.Product].info;
 export const getStatus = (state: State) => state[SliceName.Product].requestStatus;
-// export const {} = counterSlice.actions;
+
 export default productSlice;

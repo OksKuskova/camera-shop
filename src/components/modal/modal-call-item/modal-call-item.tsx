@@ -1,18 +1,18 @@
 import { ChangeEvent, RefObject, SyntheticEvent, useState } from 'react';
-import { ClassName } from '../../const';
-import { useFocusOnModal } from '../../hooks/use-focus-on-modal';
-import { useModal } from '../../hooks/use-modal';
-import NotFound from '../../pages/not-found/not-found';
-import BasketItemDescription from '../basket-item-description/basket-item-description';
-import ProductImage from '../product-image/product-image';
-import { useHandleModalClose } from '../../hooks/use-handle-modal-close';
-import { PHONE_REGEX} from '../../const';
+import { ClassName } from '../../../const';
+import { useFocusOnModal } from '../../../hooks/use-focus-on-modal';
+import { useModal } from '../../../hooks/use-modal';
+import { useHandleModalClose } from '../../../hooks/use-handle-modal-close';
+import { PHONE_REGEX} from '../../../const';
+import { formatPhoneNumber } from '../utils';
+import { useAppDispatch } from '../../../hooks';
+import { postOrder } from '../../../thunk-actions/order';
+import { useCatalog } from '../../../hooks/use-catalog';
+import { Camera } from '../../../types/camera';
+import NotFound from '../../../pages/not-found/not-found';
+import BasketItemDescription from '../../basket-item-description/basket-item-description';
+import ProductImage from '../../product-image/product-image';
 import CallItemForm from './call-item-form';
-import { formatPhoneNumber } from './utils';
-import { useAppDispatch } from '../../hooks';
-import { postOrder } from '../../thunk-actions/order';
-import { useCatalog } from '../../hooks/use-catalog';
-import { Camera } from '../../types/camera';
 
 type ModalCallItemProps = {
   modalRef: RefObject<HTMLDivElement>;

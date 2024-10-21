@@ -2,9 +2,8 @@ import 'swiper/css/bundle';
 import './slider-promo-style.css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useCatalog } from '../../hooks/use-catalog';
-import Banner from '../banner/banner';
 import { Autoplay, Pagination } from 'swiper/modules';
-
+import Banner from '../banner/banner';
 
 function SliderPromo(): JSX.Element {
 

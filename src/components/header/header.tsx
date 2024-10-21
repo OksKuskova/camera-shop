@@ -26,7 +26,6 @@ function Header(): JSX.Element {
             </li>
           </ul>
         </nav>
-        {/* div class="form-search" */}
       </div>
     </header>
   );

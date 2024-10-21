@@ -44,9 +44,6 @@ function Product(): JSX.Element {
           </div>
         </section>
       </div>
-      {/* <div className="page-content__section">
-        <ProductSimilar />
-      </div> */}
       <div className="page-content__section">
         <ReviewBlock productId={id}/>
       </div>

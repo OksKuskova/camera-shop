@@ -28,5 +28,7 @@ const modalSlice = createSlice({
 
 export const checkActiveStatus = (state: State) => state[SliceName.Modal].isActive;
 export const getActiveProductId = (state: State) => state[SliceName.Modal].activeProductId;
+
 export const {toggleActiveStatus, setActiveProductId} = modalSlice.actions;
+
 export default modalSlice;

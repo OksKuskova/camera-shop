@@ -52,5 +52,5 @@ const catalogSlice = createSlice({
 export const getProducts = (state: State) => state[SliceName.Catalog].products;
 export const getPromo = (state:State) => state[SliceName.Catalog].promo;
 export const getStatus = (state: State) => state[SliceName.Catalog].requestStatus;
-// export const {} = counterSlice.actions;
+
 export default catalogSlice;

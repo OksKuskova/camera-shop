@@ -36,5 +36,5 @@ const reviewsSlice = createSlice({
 
 export const getReviews = (state: State) => state[SliceName.Reviews].reviews;
 export const getStatus = (state: State) => state[SliceName.Reviews].requestStatus;
-// export const {} = counterSlice.actions;
+
 export default reviewsSlice;

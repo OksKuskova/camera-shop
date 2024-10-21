@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom';
 import { AppRoute, ClassName } from '../../const';
 import { Camera } from '../../types/camera';
+import { useAppDispatch } from '../../hooks';
+import { toggleActiveStatus, setActiveProductId } from '../../slices/modal/modal';
 import Rate from '../rate/rate';
 import ProductImage from '../product-image/product-image';
 import Price from '../price/price';
-import { useAppDispatch } from '../../hooks';
-import { toggleActiveStatus, setActiveProductId } from '../../slices/modal/modal';
 
 type ProductCardProps = {
   product: Camera;

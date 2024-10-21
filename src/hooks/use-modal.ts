@@ -1,4 +1,3 @@
-
 import { useAppSelector } from '.';
 import { checkActiveStatus, getActiveProductId } from '../slices/modal/modal';
 

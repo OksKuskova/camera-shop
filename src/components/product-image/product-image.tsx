@@ -3,7 +3,6 @@ import { ClassName } from '../../const';
 import { getImageSize } from './utils';
 import Picture from '../picture/picture';
 
-
 type ProductImageProps = Pick<Camera, 'previewImgWebp'| 'previewImgWebp2x' | 'previewImg' | 'previewImg2x' | 'name'> & {
   className: ClassName;
 }
