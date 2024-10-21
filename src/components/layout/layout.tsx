@@ -1,11 +1,11 @@
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { AppRoute } from '../../const';
+import { useModal } from '../../hooks/use-modal';
 import UpButton from '../up-button/up-button';
 import Modal from '../modal/modal';
 import Header from '../header/header';
-import { useModal } from '../../hooks/use-modal';
 import Breadcrumbs from '../breadcrumbs/breadcrumbs';
-import Slider from '../slider/slider';
+import SliderPromo from '../slider-promo/slider-promo';
 
 function Layout(): JSX.Element {
   const { isActive } = useModal();
@@ -15,7 +15,7 @@ function Layout(): JSX.Element {
     <div className="wrapper">
       <Header />
       <main>
-        {pathname === AppRoute.Root && <Slider />}
+        {pathname === AppRoute.Root && <SliderPromo />}
         <div className="page-content">
           <Breadcrumbs />
 
