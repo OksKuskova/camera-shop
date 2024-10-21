@@ -40,15 +40,11 @@ export const DateFormat = {
 } as const;
 
 export const PHONE_REGEX = /^(?:\+7|8)[ (]?9\d{2}[ )]?\d{3}[ -]?\d{2}[ -]?\d{2}$/;
+export const INITIAL_PHONE_SYMBOL = '+7';
 
 export const ValidateError = {
   EmptyValue: 'Нужно указать номер',
   InvalidValue: 'Формат номера: +7(9XX)XXX-XX-XX',
-} as const;
-
-export const InitialPhoneSymbol = {
-  Seven: '+7',
-  Eight: '8',
 } as const;
 
 export const Title = {

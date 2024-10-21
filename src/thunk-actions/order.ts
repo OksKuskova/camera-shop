@@ -8,7 +8,7 @@ type PostOrderProps = {
 }
 
 export const postOrder = createAsyncThunk<Order, PostOrderProps, {extra: AxiosInstance}>(
-  'review/postReviews',
+  'order/postOrder',
   async ({ body }, { extra: api }) => {
     const { data } = await api.post<Order>(ApiRoute.Orders, body);
     return data;
