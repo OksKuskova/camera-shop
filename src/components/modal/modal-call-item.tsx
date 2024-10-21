@@ -11,6 +11,8 @@ import CallItemForm from './call-item-form';
 import { formatPhoneNumber } from './utils';
 import { useAppDispatch } from '../../hooks';
 import { postOrder } from '../../thunk-actions/order';
+import { useCatalog } from '../../hooks/use-catalog';
+import { Camera } from '../../types/camera';
 
 type ModalCallItemProps = {
   modalRef: RefObject<HTMLDivElement>;
@@ -19,12 +21,16 @@ type ModalCallItemProps = {
 function ModalCallItem({modalRef}: ModalCallItemProps): JSX.Element {
   const dispatch = useAppDispatch();
 
-  const { activeProduct } = useModal();
+  const [phoneNumber, setPhoneNumber] = useState<string>('');
+  const [isValid, setIsValid] = useState<null | boolean>(null);
+
   const focusableElementsRef = useFocusOnModal();
   const handleModalClose = useHandleModalClose();
 
-  const [phoneNumber, setPhoneNumber] = useState<string>('');
-  const [isValid, setIsValid] = useState<null | boolean>(null);
+  const { activeProductId } = useModal();
+  const { products } = useCatalog();
+
+  const activeProduct = products.find((product: Camera) => product.id === activeProductId);
 
   if (!activeProduct) {
     return <NotFound />;
