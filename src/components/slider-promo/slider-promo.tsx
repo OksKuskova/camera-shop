@@ -11,6 +11,9 @@ function SliderPromo(): JSX.Element {
 
   return (
     <Swiper
+      style={{
+        width:'100vw',
+      }}
       modules={[Pagination, Autoplay]}
       slidesPerView={1}
       loop={Boolean(slides.length)}

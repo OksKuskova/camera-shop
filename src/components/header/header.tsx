@@ -3,7 +3,13 @@ import { AppRoute } from '../../const';
 
 function Header(): JSX.Element {
   return (
-    <header className="header" id="header">
+    <header
+      className="header"
+      id="header"
+      style={{
+        width:'100vw',
+      }}
+    >
       <div className="container">
         <Link className="header__logo" to={AppRoute.Root} aria-label="Переход на главную">
           <svg width="100" height="36" aria-hidden="true">
@@ -26,6 +32,28 @@ function Header(): JSX.Element {
             </li>
           </ul>
         </nav>
+        {/* <div className="form-search">
+          <form>
+            <label>
+              <svg className="form-search__icon" width="16" height="16" aria-hidden="true">
+                <use xlinkHref="#icon-lens"></use>
+              </svg>
+              <input className="form-search__input" type="text" autoComplete="off" placeholder="Поиск по сайту"></input>
+            </label>
+            <ul className="form-search__select-list">
+              <li className="form-search__select-item" tabIndex="0">Cannonball Pro MX 8i</li>
+              <li className="form-search__select-item" tabIndex="0">Cannonball Pro MX 7i</li>
+              <li className="form-search__select-item" tabIndex="0">Cannonball Pro MX 6i</li>
+              <li className="form-search__select-item" tabIndex="0">Cannonball Pro MX 5i</li>
+              <li className="form-search__select-item" tabIndex="0">Cannonball Pro MX 4i</li>
+            </ul>
+          </form>
+          <button className="form-search__reset" type="reset">
+            <svg width="10" height="10" aria-hidden="true">
+              <use xlinkHref="#icon-close"></use>
+            </svg><span className="visually-hidden">Сбросить поиск</span>
+          </button>
+        </div> */}
       </div>
     </header>
   );

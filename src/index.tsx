@@ -8,6 +8,8 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
+document.body.style.overflowY = 'scroll';
+
 root.render(
   <React.StrictMode>
     <Provider store={store} >
