@@ -9,6 +9,7 @@ const root = ReactDOM.createRoot(
 );
 
 document.body.style.overflowY = 'scroll';
+// document.documentElement.style.marginLeft = 'calc(100vw - 100%)';
 
 root.render(
   <React.StrictMode>

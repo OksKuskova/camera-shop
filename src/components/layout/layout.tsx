@@ -14,7 +14,11 @@ function Layout(): JSX.Element {
     <div className="wrapper">
       <Header />
 
-      <main>
+      <main
+        style={{
+          width:'100vw',
+        }}
+      >
         {pathname === AppRoute.Root && <SliderPromo />}
 
         <div className="page-content">
