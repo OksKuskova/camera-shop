@@ -1,5 +1,6 @@
 import dayjs from 'dayjs';
 import updateLocale from 'dayjs/plugin/updateLocale';
+import { KeyboardEvent } from 'react';
 import { DateFormat } from './const';
 
 dayjs.extend(updateLocale);
@@ -27,3 +28,5 @@ export const humanizeDate = (date: string, format: string) => {
 
   return humanizedDate;
 };
+
+export const isEnterKey = (evt: KeyboardEvent<HTMLButtonElement | HTMLLIElement>) => evt.key === 'Enter';

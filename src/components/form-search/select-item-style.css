@@ -1,0 +1,4 @@
+.form-search__select-item:focus {
+  background-color: #f4f4fc;
+  outline: none;
+}
