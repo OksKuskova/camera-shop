@@ -1,15 +1,22 @@
-type CameraTypes = 'Коллекционная' | 'Моментальная' | 'Цифровая' | 'Плёночная';
-type Categories = 'Видеокамера' | 'Фотоаппарат';
-type Levels = 'Нулевой' | 'Любительский' | 'Профессиональный';
+import { Category, CameraType, Level } from '../components/form-filter/const';
+
+export type CategoryKeys = keyof typeof Category;
+export type CategoryValues = typeof Category[CategoryKeys];
+
+export type CameraTypeKeys = keyof typeof CameraType;
+export type CameraTypeValues = typeof CameraType[CameraTypeKeys];
+
+export type LevelKeys = keyof typeof Level;
+export type LevelValues = typeof Level[LevelKeys];
 
 export type Camera = {
   id: number;
   name: string;
   vendorCode: string;
-  type: CameraTypes;
-  category: Categories;
+  type: CameraTypeValues;
+  category: CategoryValues;
   description: string;
-  level: Levels;
+  level: LevelValues;
   price: number;
   rating: number;
   reviewCount: number;
