@@ -1,19 +1,22 @@
 import { Helmet } from 'react-helmet-async';
 import { useCatalog } from '../../hooks/use-catalog';
+import { useFilters } from '../../hooks/use-filters';
 import { Title } from '../../const';
+import { ChangeEvent, useState } from 'react';
+import { SortType } from '../../types/sort';
+import { Sort } from '../../components/form-sort/const';
+import { sortProducts } from '../../components/form-sort/utils';
 import ProductCard from '../../components/product-card/product-card';
 import Breadcrumbs from '../../components/breadcrumbs/breadcrumbs';
 import Loader from '../../components/loader/loader';
 import FormSort from '../../components/form-sort/form-sort';
-import { ChangeEvent, useState } from 'react';
-import { SortType } from '../../types/sort';
-import { Sort } from '../../const';
-import { sortProducts } from '../../components/form-sort/utils';
+import FormFilter from '../../components/form-filter/form-filter';
 
 const { Type, Order } = Sort;
 
 function Catalog(): JSX.Element {
   const { products, isLoading } = useCatalog();
+  const { filteredProducts } = useFilters(products);
 
   const [sort, setSort] = useState<SortType>({
     type: Type.PRICE,
@@ -29,7 +32,7 @@ function Catalog(): JSX.Element {
     return <Loader />;
   }
 
-  const sortedProducts = sortProducts(sort, products);
+  const sortedProducts = sortProducts(sort, filteredProducts);
 
   return (
     <>
@@ -42,7 +45,7 @@ function Catalog(): JSX.Element {
           <h1 className="title title--h2">Каталог фото- и видеотехники</h1>
           <div className="page-content__columns">
             <div className="catalog__aside">
-              <img src="img/banner.png"></img>
+              <FormFilter />
             </div>
             <div className="catalog__content">
               <FormSort onChange={handleInputChange} sort={sort}/>
