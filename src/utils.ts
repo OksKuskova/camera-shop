@@ -29,4 +29,6 @@ export const humanizeDate = (date: string, format: string) => {
   return humanizedDate;
 };
 
-export const isEnterKey = (evt: KeyboardEvent<HTMLButtonElement | HTMLLIElement>) => evt.key === 'Enter';
+export const isEnterKey = (evt: KeyboardEvent<HTMLButtonElement | HTMLLIElement | HTMLInputElement>) => evt.key === 'Enter';
+
+export const lowerFirstLetter = (data: string) => data.charAt(0).toLowerCase() + data.slice(1);
