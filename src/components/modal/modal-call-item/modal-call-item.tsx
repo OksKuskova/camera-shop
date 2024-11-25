@@ -3,7 +3,7 @@ import { ClassName } from '../../../const';
 import { useFocusOnModal } from '../../../hooks/use-focus-on-modal';
 import { useModal } from '../../../hooks/use-modal';
 import { useHandleModalClose } from '../../../hooks/use-handle-modal-close';
-import { PHONE_REGEX} from '../../../const';
+import { PHONE_REGEX, REGEX } from '../../../const';
 import { formatPhoneNumber } from '../utils';
 import { useAppDispatch } from '../../../hooks';
 import { postOrder } from '../../../thunk-actions/order';
@@ -44,7 +44,9 @@ function ModalCallItem({modalRef}: ModalCallItemProps): JSX.Element {
 
   const handleInputChange = (evt: ChangeEvent<HTMLInputElement>) => {
     validatePhoneNumber(evt.target.value);
-    setPhoneNumber(evt.target.value);
+    if (REGEX.test(evt.target.value)) {
+      setPhoneNumber(evt.target.value);
+    }
   };
 
   const handleFormSubmit = (evt: SyntheticEvent) => {

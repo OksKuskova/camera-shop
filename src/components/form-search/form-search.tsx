@@ -5,12 +5,9 @@ import { INDEX_DEFAULT, SEARCH_MIN_LENGTH } from './const';
 import { isEnterKey } from '../../utils';
 import SelectItems from './select-items';
 
-// import { useFormFocus } from '../../hooks/use-form-focus';
-
 function FormSearch(): JSX.Element {
   const buttonRef = useRef<HTMLButtonElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
-  // const formSearchRef = useRef<HTMLDivElement>(null); Добавить в атрибуды внешнего дива: ref={formSearchRef} tabIndex={0}
 
   const [searchData, setSearchData] = useState('');
   const [selectItems, setSelectItems] = useState<SelectItem[]>([]);

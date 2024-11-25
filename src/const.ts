@@ -1,3 +1,5 @@
+
+export const REGEX = /^[\d\s\-\\(\\)\\+]*$/;
 export const PHONE_REGEX = /^(?:\+7|8)[ (]?9\d{2}[ )]?\d{3}[ -]?\d{2}[ -]?\d{2}$/;
 export const INITIAL_PHONE_SYMBOL = '+7';
 
