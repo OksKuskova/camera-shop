@@ -1,6 +1,6 @@
 import dayjs from 'dayjs';
 import updateLocale from 'dayjs/plugin/updateLocale';
-import { KeyboardEvent } from 'react';
+import { KeyboardEvent, RefObject } from 'react';
 import { DateFormat } from './const';
 
 dayjs.extend(updateLocale);
@@ -32,3 +32,12 @@ export const humanizeDate = (date: string, format: string) => {
 export const isEnterKey = (evt: KeyboardEvent<HTMLButtonElement | HTMLLIElement | HTMLInputElement>) => evt.key === 'Enter';
 
 export const lowerFirstLetter = (data: string) => data.charAt(0).toLowerCase() + data.slice(1);
+
+export const scrollToComponent = (componentRef: RefObject<HTMLElement>) => {
+  if (componentRef.current) {
+    componentRef.current.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    });
+  }
+};
