@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 
 export function useFocusOnModal() {
-  const focusableElementsRef = useRef<(HTMLInputElement | HTMLButtonElement | null)[]>([]);
+  const focusableElementsRef = useRef<(HTMLInputElement | HTMLButtonElement | HTMLAnchorElement | null)[]>([]);
 
   useEffect(() => {
     const firstElement = focusableElementsRef.current[0];

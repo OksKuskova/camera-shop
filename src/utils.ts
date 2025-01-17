@@ -2,6 +2,7 @@ import dayjs from 'dayjs';
 import updateLocale from 'dayjs/plugin/updateLocale';
 import { KeyboardEvent, RefObject } from 'react';
 import { DateFormat } from './const';
+import { Camera } from './types/camera';
 
 dayjs.extend(updateLocale);
 
@@ -41,3 +42,12 @@ export const scrollToComponent = (componentRef: RefObject<HTMLElement>) => {
     });
   }
 };
+
+export const getProductById = (products: Camera[], productId: number | null) => {
+  if (productId === null) {
+    return undefined;
+  }
+  return products.find((product: Camera) => product.id === productId);
+};
+
+

@@ -13,6 +13,7 @@ import NotFound from '../../../pages/not-found/not-found';
 import BasketItemDescription from '../../basket-item-description/basket-item-description';
 import ProductImage from '../../product-image/product-image';
 import CallItemForm from './call-item-form';
+import ModalCloseButton from '../modal-close-button/modal-close-button';
 
 type ModalCallItemProps = {
   modalRef: RefObject<HTMLDivElement>;
@@ -76,11 +77,7 @@ function ModalCallItem({modalRef}: ModalCallItemProps): JSX.Element {
           </svg>Заказать
         </button>
       </div>
-      <button className="cross-btn" type="button" aria-label="Закрыть попап" onClick={handleModalClose} ref={(el) => (focusableElementsRef.current[2] = el)}>
-        <svg width="10" height="10" aria-hidden="true">
-          <use xlinkHref="#icon-close"></use>
-        </svg>
-      </button>
+      <ModalCloseButton focusableElementsRef={focusableElementsRef} onClick={handleModalClose} />
     </div>
   );
 }

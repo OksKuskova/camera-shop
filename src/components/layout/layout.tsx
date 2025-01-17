@@ -7,7 +7,7 @@ import Header from '../header/header';
 import SliderPromo from '../slider-promo/slider-promo';
 
 function Layout(): JSX.Element {
-  const { isActive } = useModal();
+  const { isActive, modalContentValue } = useModal();
   const { pathname } = useLocation();
 
   return (
@@ -27,7 +27,7 @@ function Layout(): JSX.Element {
 
         </div>
 
-        {isActive && <Modal />}
+        {isActive && <Modal modalContentValue={modalContentValue} />}
 
       </main>
 
