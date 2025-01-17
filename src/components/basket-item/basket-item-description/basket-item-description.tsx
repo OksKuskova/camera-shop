@@ -1,8 +1,10 @@
-import { ClassName } from '../../const';
-import { Camera } from '../../types/camera';
-import Price from '../price/price';
+import { ClassName } from '../../../const';
+import { Camera } from '../../../types/camera';
+import Price from '../../price/price';
 
-type BasketItemDescriptionProps = Pick<Camera, 'name' | 'vendorCode' | 'type' | 'level' | 'price'>
+type BasketItemDescriptionProps = Pick<Camera, 'name' | 'vendorCode' | 'type' | 'level'> & {
+  price?: number;
+}
 
 function BasketItemDescription({ name, vendorCode, type, level, price }: BasketItemDescriptionProps): JSX.Element {
   return (
@@ -16,7 +18,7 @@ function BasketItemDescription({ name, vendorCode, type, level, price }: BasketI
         <li className="basket-item__list-item">{`${type} фотокамера`}</li>
         <li className="basket-item__list-item">{`${level} уровень`}</li>
       </ul>
-      <Price price={price} className={ClassName.Basket} />
+      {price && <Price price={price} className={ClassName.Basket} />}
     </div>
   );
 }

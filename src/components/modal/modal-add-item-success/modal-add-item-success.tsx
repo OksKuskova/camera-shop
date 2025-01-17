@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useFocusOnModal } from '../../../hooks/use-focus-on-modal';
 import { useHandleModalClose } from '../../../hooks/use-handle-modal-close';
 
@@ -9,8 +9,14 @@ import { ModalContentProps } from '../../../types/modal';
 import ModalCloseButton from '../modal-close-button/modal-close-button';
 
 function ModalAddItemSuccess({modalRef, contentValue}: ModalContentProps): JSX.Element {
+  const navigate = useNavigate();
   const focusableElementsRef = useFocusOnModal();
   const handleModalClose = useHandleModalClose();
+
+  const handleButtonClick = () => {
+    handleModalClose();
+    navigate(AppRoute.Basket);
+  };
 
   return (
     <div className="modal__content" ref={modalRef} tabIndex={-1}>
@@ -20,7 +26,7 @@ function ModalAddItemSuccess({modalRef, contentValue}: ModalContentProps): JSX.E
       </svg>
       <div className="modal__buttons">
         <Link className="btn btn--transparent modal__btn" to={AppRoute.Root} ref={(el) => (focusableElementsRef.current[0] = el)} onClick={handleModalClose}>Продолжить покупки</Link>
-        <button className="btn btn--purple modal__btn modal__btn--fit-width" ref={(el) => (focusableElementsRef.current[1] = el)}>{ButtonTitle.AddSuccess}</button>
+        <button className="btn btn--purple modal__btn modal__btn--fit-width" ref={(el) => (focusableElementsRef.current[1] = el)} onClick={handleButtonClick}>{ButtonTitle.AddSuccess}</button>
       </div>
       <ModalCloseButton focusableElementsRef={focusableElementsRef} focusOrder={2} onClick={handleModalClose} />
     </div>

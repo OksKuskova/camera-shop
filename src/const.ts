@@ -21,6 +21,7 @@ export enum ClassName {
 export const AppRoute = {
   Root: '/',
   Product: '/camera/:id',
+  Basket: '/card',
   NotFound: '/*',
 } as const;
 

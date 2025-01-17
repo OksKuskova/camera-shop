@@ -6,7 +6,7 @@ import { useHandleModalClose } from '../../../hooks/use-handle-modal-close';
 import { useModal } from '../../../hooks/use-modal';
 import NotFound from '../../../pages/not-found/not-found';
 import { Camera } from '../../../types/camera';
-import BasketItemDescription from '../../basket-item-description/basket-item-description';
+import BasketItemDescription from '../../basket-item/basket-item-description/basket-item-description';
 import ProductImage from '../../product-image/product-image';
 import ModalCloseButton from '../modal-close-button/modal-close-button';
 

@@ -10,7 +10,7 @@ import { postOrder } from '../../../thunk-actions/order';
 import { useCatalog } from '../../../hooks/use-catalog';
 import { Camera } from '../../../types/camera';
 import NotFound from '../../../pages/not-found/not-found';
-import BasketItemDescription from '../../basket-item-description/basket-item-description';
+import BasketItemDescription from '../../basket-item/basket-item-description/basket-item-description';
 import ProductImage from '../../product-image/product-image';
 import CallItemForm from './call-item-form';
 import ModalCloseButton from '../modal-close-button/modal-close-button';
