@@ -3,5 +3,6 @@ export const SliceName = {
   Product: 'product',
   Reviews: 'reviews',
   Modal: 'modal',
-  Filters: 'filters'
+  Filters: 'filters',
+  Basket: 'basket',
 } as const;
