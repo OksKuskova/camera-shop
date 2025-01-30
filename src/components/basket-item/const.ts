@@ -1,3 +1,5 @@
+export const QUANTITY_REGEX = /^[1-9]?$/;
+
 export const Quantity = {
   Step: 1,
   Max: 9,
@@ -7,5 +9,4 @@ export const Quantity = {
 export enum ChangeQuantityAction {
   Reduce = 'reduce',
   Increase = 'increase',
-  Set = 'set',
 }

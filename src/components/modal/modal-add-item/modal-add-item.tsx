@@ -3,20 +3,22 @@ import { useModal } from '../../../hooks/use-modal';
 import { useFocusOnModal } from '../../../hooks/use-focus-on-modal';
 import { useHandleModalClose } from '../../../hooks/use-handle-modal-close';
 import { useHandleModalOpen } from '../../../hooks/use-handle-modal-open';
-import { useBasket } from '../../../hooks/use-basket';
 
 import { ClassName } from '../../../const';
 import { ButtonTitle, ModalContent, ModalTitle } from '../const';
 import { getProductById } from '../../../utils';
 import { ModalContentProps } from '../../../types/modal';
-import { addToBasket } from '../../basket-item/utils';
 
 import NotFound from '../../../pages/not-found/not-found';
 import BasketItemDescription from '../../basket-item/basket-item-description/basket-item-description';
 import ProductImage from '../../product-image/product-image';
 import ModalCloseButton from '../modal-close-button/modal-close-button';
+import { useAppDispatch } from '../../../hooks';
+import { addItem } from '../../../slices/basket/basket';
+import { Quantity } from '../../basket-item/const';
 
 function ModalAddItem({ modalRef, contentValue }: ModalContentProps): JSX.Element {
+  const dispatch = useAppDispatch();
 
   const focusableElementsRef = useFocusOnModal();
   const handleModalOpen = useHandleModalOpen(null, ModalContent.AddSuccess);
@@ -24,7 +26,6 @@ function ModalAddItem({ modalRef, contentValue }: ModalContentProps): JSX.Elemen
 
   const { activeProductId } = useModal();
   const { products } = useCatalog();
-  const { basket } = useBasket();
 
   const activeProduct = getProductById(products, activeProductId);
 
@@ -35,7 +36,7 @@ function ModalAddItem({ modalRef, contentValue }: ModalContentProps): JSX.Elemen
   const { id, name, vendorCode, type, level, price, previewImgWebp, previewImgWebp2x, previewImg, previewImg2x } = activeProduct;
 
   const handleButtonClick = () => {
-    addToBasket(basket, id);
+    dispatch(addItem({id: id, quantity: Quantity.Min}));
     handleModalClose();
     setTimeout(handleModalOpen, 700);
   };

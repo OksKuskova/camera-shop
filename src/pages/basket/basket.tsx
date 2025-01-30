@@ -1,10 +1,12 @@
 import { useCatalog } from '../../hooks/use-catalog';
-import { useBasket } from '../../hooks/use-basket';
+import { useAppSelector } from '../../hooks';
+import { getBasketItems } from '../../slices/basket/basket';
 import { getProductById } from '../../utils';
 import BasketItem from '../../components/basket-item/basket-item';
 
 function Basket(): JSX.Element {
-  const { basket } = useBasket();
+  const basketItems = useAppSelector(getBasketItems);
+
   const { products } = useCatalog();
 
   return (
@@ -12,10 +14,10 @@ function Basket(): JSX.Element {
       <div className="container">
         <h1 className="title title--h2">Корзина</h1>
         <ul className="basket__list">
-          {basket.map((basketItem) => {
+          {basketItems.map((basketItem) => {
             const product = getProductById(products, basketItem.id);
             if (product) {
-              return <BasketItem key={product.id} product={product} />;
+              return <BasketItem key={product.id} product={product} quantity={basketItem.quantity}/>;
             }
           })}
         </ul>

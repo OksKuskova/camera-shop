@@ -1,59 +1,50 @@
 import { ChangeEvent, useEffect, useState } from 'react';
-import { useBasket } from '../../../hooks/use-basket';
 import { ChangeQuantityAction, Quantity } from '../const';
-import { changeQuantity, getItemInBasketById } from '../utils';
+import { useAppDispatch } from '../../../hooks';
+import { updateItem } from '../../../slices/basket/basket';
+import { QUANTITY_REGEX } from '../const';
 
 type QuantityProps = {
   id: number;
+  quantity: number;
 }
 
-function BasketItemQuantity({id}: QuantityProps): JSX.Element {
-  const [userQuantity, setUserQuantity] = useState<string>('');
-  const [, setDummy] = useState<number>(0);
-
-  const { basket } = useBasket();
-  const currentItem = getItemInBasketById(basket, id);
+function BasketItemQuantity({ id, quantity }: QuantityProps): JSX.Element {
+  const [temporaryQuantity, setTemporaryQuantity] = useState<string>('');
 
   useEffect(() => {
-    if (currentItem) {
-      setUserQuantity(String(currentItem.quantity));
-    }
-  }, []);
+    setTemporaryQuantity(String(quantity));
+  }, [quantity]);
 
-  if (!currentItem) {
-    return <div></div>;
-  }
-
-  const forceUpdate = () => {
-    setDummy((prev) => prev + 1);
-  };
+  const dispatch = useAppDispatch();
 
   const handleButtonClick = (action: ChangeQuantityAction) => {
-    changeQuantity(basket, id, action);
-    setUserQuantity(String(currentItem?.quantity));
+    let newQuantity: number | null = null;
+
+    if (action === ChangeQuantityAction.Increase) {
+      newQuantity = quantity + Quantity.Step;
+    } else {
+      newQuantity = quantity - Quantity.Step;
+    }
+    if (newQuantity) {
+      dispatch(updateItem({id, quantity: newQuantity}));
+    }
   };
 
   const handleInputChange = (evt: ChangeEvent<HTMLInputElement>) => {
     const { value } = evt.target;
-    const numericValue = Number(value);
 
-    if (Number.isNaN(numericValue)) {
-      return;
+    if (QUANTITY_REGEX.test(value)) {
+      setTemporaryQuantity(value);
     }
-
-    setUserQuantity(value);
   };
 
   const handleInputBlur = () => {
-    if (userQuantity === '') {
-      setUserQuantity(String(currentItem.quantity));
-    } else {
-      changeQuantity(basket, id, ChangeQuantityAction.Set, Number(userQuantity));
-      if (Number(userQuantity) === currentItem.quantity) {
-        forceUpdate();
-      } else {
-        setUserQuantity(String(currentItem.quantity));
-      }
+    if (temporaryQuantity === '') {
+      setTemporaryQuantity(String(quantity));
+    } else
+    if (Number(temporaryQuantity) !== quantity) {
+      dispatch(updateItem({id, quantity: Number(temporaryQuantity)}));
     }
   };
 
@@ -62,7 +53,7 @@ function BasketItemQuantity({id}: QuantityProps): JSX.Element {
       <button
         className="btn-icon btn-icon--prev"
         aria-label="уменьшить количество товара"
-        disabled={currentItem && currentItem.quantity <= Quantity.Min}
+        disabled={quantity <= Quantity.Min}
         onClick={() => handleButtonClick(ChangeQuantityAction.Reduce)}
       >
         <svg width="7" height="12" aria-hidden="true">
@@ -73,8 +64,7 @@ function BasketItemQuantity({id}: QuantityProps): JSX.Element {
       <input
         type="text"
         id="counter1"
-        value={userQuantity}
-        pattern='\d*'
+        value={temporaryQuantity}
         maxLength={1}
         aria-label="количество товара"
         onChange={handleInputChange}
@@ -84,7 +74,7 @@ function BasketItemQuantity({id}: QuantityProps): JSX.Element {
       <button
         className="btn-icon btn-icon--next"
         aria-label="увеличить количество товара"
-        disabled={currentItem && currentItem.quantity >= Quantity.Max}
+        disabled={quantity >= Quantity.Max}
         onClick={() => handleButtonClick(ChangeQuantityAction.Increase)}
       >
         <svg width="7" height="12" aria-hidden="true">
