@@ -3,13 +3,19 @@ import { TBasketItem } from '../../types/basket-item';
 import { SliceName } from '../const';
 import { State } from '../../store/type';
 import { Quantity } from '../../components/basket-item/const';
+import { postPromoCode } from '../../thunk-actions/promo-code';
+import { RequestStatus } from '../../const';
 
 type BasketState = {
   items: TBasketItem[];
+  discount: number;
+  requestStatus: RequestStatus;
 }
 
 const initialState: BasketState = {
   items: [],
+  discount: 0,
+  requestStatus: RequestStatus.Idle,
 };
 
 const basketSlice = createSlice({
@@ -37,9 +43,24 @@ const basketSlice = createSlice({
       state.items = [];
     },
   },
+  extraReducers(builder) {
+    builder
+      .addCase(postPromoCode.pending, (state) => {
+        state.requestStatus = RequestStatus.Loading;
+      })
+      .addCase(postPromoCode.fulfilled, (state, action) => {
+        state.discount = action.payload;
+        state.requestStatus = RequestStatus.Success;
+      })
+      .addCase(postPromoCode.rejected, (state) => {
+        state.requestStatus = RequestStatus.Failed;
+      });
+  }
 });
 
 export const getBasketItems = (state: State) => state[SliceName.Basket].items;
+export const getDiscount = (state: State) => state[SliceName.Basket].discount;
+export const getStatus = (state: State) => state[SliceName.Basket].requestStatus;
 
 export const { addItem, updateItem, removeItem, clearBasket } = basketSlice.actions;
 export default basketSlice;

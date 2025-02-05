@@ -3,5 +3,6 @@ export const ApiRoute = {
   Reviews: '/reviews',
   Orders: '/orders',
   Promo: '/promo',
+  PromoCode: '/coupons',
 } as const;
 
