@@ -1,14 +1,49 @@
 import { useCatalog } from '../../hooks/use-catalog';
-import { useAppSelector } from '../../hooks';
-import { getBasketItems } from '../../slices/basket/basket';
+import { useAppDispatch } from '../../hooks';
 import { getProductById } from '../../utils';
 import BasketItem from '../../components/basket-item/basket-item';
 import BasketPromo from '../../components/basket-promo/basket-promo';
+import { SyntheticEvent, useEffect, useState } from 'react';
+import BasketOrder from '../../components/basket-order/basket-order';
+import { useBasket } from '../../hooks/use-basket';
+import { postOrder } from '../../thunk-actions/order';
+import { clearBasket } from '../../slices/basket/basket';
 
 function Basket(): JSX.Element {
-  const basketItems = useAppSelector(getBasketItems);
+  const [price, setPrice] = useState<number>(0);
+  const [isBasketCleared, setIsBasketCleared] = useState<boolean>(false);
 
+  const dispatch = useAppDispatch();
+
+  const { basketItems, coupon, itemIds } = useBasket();
   const { products } = useCatalog();
+
+  useEffect(() => {
+    let basketPrice = 0;
+
+    basketItems.map(({ id, quantity }) => {
+      const productIndex = products.findIndex((product) => product.id === id);
+      if (productIndex >= 0) {
+        basketPrice += products[productIndex].price * quantity;
+      }
+    });
+
+    setPrice(basketPrice);
+  }, [basketItems, products]);
+
+  const handleFormSubmit = (evt: SyntheticEvent) => {
+    evt.preventDefault();
+    dispatch(postOrder({body: {camerasIds: itemIds, coupon: coupon}}))
+      .unwrap()
+      .then(() => {
+        dispatch(clearBasket());
+        setIsBasketCleared(true);
+
+        setTimeout(() => {
+          setIsBasketCleared(false);
+        }, 2000);
+      });
+  };
 
   return (
     <section className="basket">
@@ -23,23 +58,8 @@ function Basket(): JSX.Element {
           })}
         </ul>
         <div className="basket__summary">
-          <BasketPromo />
-          {/* <div className="basket__summary-order">
-            <p className="basket__summary-item">
-              <span className="basket__summary-text">Всего:</span>
-              <span className="basket__summary-value">111 390 ₽</span>
-            </p>
-            <p className="basket__summary-item">
-              <span className="basket__summary-text">Скидка:</span>
-              <span className="basket__summary-value basket__summary-value--bonus">0 ₽</span>
-            </p>
-            <p className="basket__summary-item">
-              <span className="basket__summary-text basket__summary-text--total">К оплате:</span>
-              <span className="basket__summary-value basket__summary-value--total">111 390 ₽</span>
-            </p>
-            <button className="btn btn--purple" type="submit">Оформить заказ
-            </button>
-          </div> */}
+          <BasketPromo isBasketCleared={isBasketCleared} />
+          <BasketOrder price={price} onSubmit={handleFormSubmit}/>
         </div>
       </div>
     </section>

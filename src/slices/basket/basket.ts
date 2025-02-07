@@ -9,12 +9,14 @@ import { RequestStatus } from '../../const';
 type BasketState = {
   items: TBasketItem[];
   discount: number;
+  coupon: string | null;
   requestStatus: RequestStatus;
 }
 
 const initialState: BasketState = {
   items: [],
   discount: 0,
+  coupon: null,
   requestStatus: RequestStatus.Idle,
 };
 
@@ -39,8 +41,14 @@ const basketSlice = createSlice({
     removeItem: (state, action: PayloadAction<number>) => {
       state.items = state.items.filter((item) => item.id !== action.payload);
     },
+    setCoupon: (state, action: PayloadAction<string>) => {
+      state.coupon = action.payload;
+    },
     clearBasket: (state) => {
       state.items = [];
+      state.discount = 0;
+      state.coupon = null;
+      state.requestStatus = RequestStatus.Idle;
     },
   },
   extraReducers(builder) {
@@ -60,7 +68,8 @@ const basketSlice = createSlice({
 
 export const getBasketItems = (state: State) => state[SliceName.Basket].items;
 export const getDiscount = (state: State) => state[SliceName.Basket].discount;
+export const getCoupon = (state: State) => state[SliceName.Basket].coupon;
 export const getStatus = (state: State) => state[SliceName.Basket].requestStatus;
 
-export const { addItem, updateItem, removeItem, clearBasket } = basketSlice.actions;
+export const { addItem, updateItem, removeItem, setCoupon, clearBasket } = basketSlice.actions;
 export default basketSlice;

@@ -1,13 +1,25 @@
-import { ChangeEvent, SyntheticEvent, useState } from 'react';
+import { ChangeEvent, SyntheticEvent, useEffect, useState } from 'react';
 import { ValidationStatus } from './const';
 import { useAppDispatch } from '../../hooks';
 import { postPromoCode } from '../../thunk-actions/promo-code';
+import { setCoupon } from '../../slices/basket/basket';
 
-function BasketPromo(): JSX.Element {
+type BasketPromoProps = {
+  isBasketCleared: boolean;
+}
+
+function BasketPromo({ isBasketCleared }: BasketPromoProps): JSX.Element {
   const [promoCode, setPromoCode] = useState<string>('');
   const [validationStatus, setValidationStatus] = useState<ValidationStatus | null>(null);
 
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (isBasketCleared) {
+      setPromoCode('');
+      setValidationStatus(null);
+    }
+  }, [isBasketCleared]);
 
   const handleInputChange = (evt: ChangeEvent<HTMLInputElement>) => {
     const { value } = evt.target;
@@ -24,6 +36,7 @@ function BasketPromo(): JSX.Element {
       .unwrap()
       .then(() => {
         setValidationStatus(ValidationStatus.Valid);
+        dispatch(setCoupon(promoCode));
       })
       .catch(() => {
         setValidationStatus(ValidationStatus.Invalid);

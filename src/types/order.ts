@@ -1,5 +1,4 @@
 export type Order = {
-  camerasIds: [number];
+  camerasIds: number[];
   coupon: string | null;
-  tel: string;
 }
