@@ -19,7 +19,7 @@ function Basket(): JSX.Element {
 
   const dispatch = useAppDispatch();
 
-  const { basketItems, coupon, itemIds } = useBasket();
+  const { basketItems, coupon, itemIds, basketItemsCount } = useBasket();
   const { products } = useCatalog();
 
   useEffect(() => {
@@ -58,7 +58,7 @@ function Basket(): JSX.Element {
         </Helmet>
         <div className="container">
           <h1 className="title title--h2">Корзина</h1>
-          { basketItems.length === 0 ? <EmptyBasket /> :
+          { !basketItemsCount ? <EmptyBasket /> :
             <>
               <ul className="basket__list">
                 {basketItems.map((basketItem) => {

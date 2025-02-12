@@ -16,5 +16,6 @@ export function useBasket() {
     coupon,
     requestStatus,
     itemIds,
+    basketItemsCount: basketItems.length,
   };
 }
