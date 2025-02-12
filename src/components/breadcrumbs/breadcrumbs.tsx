@@ -11,6 +11,7 @@ function Breadcrumbs(): JSX.Element {
     name: string;
     to: string;
   }
+
   const paths = pathname.split('/').filter((path) => path);
 
   const breadcrumbs: Crumb[] = [{name: Title.Main, to: AppRoute.Root}, {name: Title.Catalog, to: AppRoute.Root}];
@@ -18,6 +19,9 @@ function Breadcrumbs(): JSX.Element {
   if (paths.length) {
     if (paths[0] === AppRoute.Product.slice(1, 7) && currentProduct) {
       breadcrumbs.push({name: currentProduct.name, to: `/${paths.join('/')}`});
+    }
+    if (paths[0] === AppRoute.Basket.slice(1)) {
+      breadcrumbs.push({name: Title.Basket, to: `/${paths.join('')}`});
     }
   }
 

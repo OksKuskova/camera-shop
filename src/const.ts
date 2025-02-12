@@ -53,5 +53,6 @@ export const ValidateError = {
 export const Title = {
   Main: 'Главная',
   Catalog: 'Каталог',
+  Basket: 'Корзина',
 } as const;
 
