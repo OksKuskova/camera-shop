@@ -5,7 +5,7 @@ import { useHandleModalClose } from '../../../hooks/use-handle-modal-close';
 import { useHandleModalOpen } from '../../../hooks/use-handle-modal-open';
 
 import { ClassName } from '../../../const';
-import { ButtonTitle, ModalContent, ModalTitle } from '../const';
+import { ModalContent, ModalTitle } from '../const';
 import { getProductById } from '../../../utils';
 import { ModalContentProps } from '../../../types/modal';
 
@@ -16,6 +16,7 @@ import ModalCloseButton from '../modal-close-button/modal-close-button';
 import { useAppDispatch } from '../../../hooks';
 import { addItem } from '../../../slices/basket/basket';
 import { Quantity } from '../../basket-item/const';
+import ModalButtons from '../modal-buttons/modal-buttons';
 
 function ModalAddItem({ modalRef, contentValue }: ModalContentProps): JSX.Element {
   const dispatch = useAppDispatch();
@@ -48,9 +49,8 @@ function ModalAddItem({ modalRef, contentValue }: ModalContentProps): JSX.Elemen
         <ProductImage name={name} previewImgWebp={previewImgWebp} previewImgWebp2x={previewImgWebp2x} previewImg={previewImg} previewImg2x={previewImg2x} className={ClassName.Basket} />
         <BasketItemDescription name={name} vendorCode={vendorCode} type={type} level={level} price={price} />
       </div>
-
-      <div className="modal__buttons">
-        {/* Думаю, что нужно сделать отдельный компонент, посмотри, где еще нужны иконки на этой кнопке */}
+      <ModalButtons contentValue={contentValue} focusableElementsRef={focusableElementsRef} onClick={handleButtonClick} />
+      {/* <div className="modal__buttons">
         <button
           className="btn btn--purple modal__btn modal__btn--fit-width"
           type="button"
@@ -62,8 +62,8 @@ function ModalAddItem({ modalRef, contentValue }: ModalContentProps): JSX.Elemen
           </svg>
           {ButtonTitle[contentValue]}
         </button>
-      </div>
-      <ModalCloseButton focusableElementsRef={focusableElementsRef} focusOrder={1} onClick={handleModalClose} />
+      </div> */}
+      <ModalCloseButton focusableElementsRef={focusableElementsRef} focusOrder={1} />
     </div>
   );
 }

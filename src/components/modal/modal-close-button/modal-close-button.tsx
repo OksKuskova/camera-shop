@@ -1,13 +1,13 @@
 import { MutableRefObject } from 'react';
+import { useHandleModalClose } from '../../../hooks/use-handle-modal-close';
 
 type ModalCloseButtonProps = {
   focusableElementsRef: MutableRefObject<(HTMLInputElement | HTMLButtonElement | HTMLAnchorElement | null)[]>;
   focusOrder: number;
-  onClick: () => void;
 };
 
-function ModalCloseButton({focusableElementsRef, focusOrder, onClick}: ModalCloseButtonProps): JSX.Element {
-  const handleModalClose = () => onClick();
+function ModalCloseButton({focusableElementsRef, focusOrder}: ModalCloseButtonProps): JSX.Element {
+  const handleModalClose = useHandleModalClose();
 
   return (
     <button className="cross-btn" type="button" aria-label="Закрыть попап" onClick={handleModalClose} ref={(el) => (focusableElementsRef.current[focusOrder] = el)}>

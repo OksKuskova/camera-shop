@@ -9,7 +9,7 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
-document.body.style.overflowY = 'scroll';
+// document.body.style.overflowY = 'scroll';
 // document.documentElement.style.marginLeft = 'calc(100vw - 100%)';
 
 root.render(

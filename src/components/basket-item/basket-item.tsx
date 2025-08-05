@@ -1,12 +1,12 @@
 import { memo } from 'react';import { ClassName } from '../../const';
 import { Camera } from '../../types/camera';
-import { useAppDispatch } from '../../hooks';
-import { removeItem } from '../../slices/basket/basket';
 import Price from '../price/price';
 import ProductImage from '../product-image/product-image';
 import BasketItemDescription from './basket-item-description/basket-item-description';
 import BasketItemQuantity from './basket-item-quantity/basket-item-quantity';
 import BasketItemTotalPrice from './basket-item-total-price/basket-item-total-price';
+import { useHandleModalOpen } from '../../hooks/use-handle-modal-open';
+import { ModalContent } from '../modal/const';
 
 type BasketItemProps = {
 	product: Camera;
@@ -14,11 +14,10 @@ type BasketItemProps = {
 }
 
 const BasketItem = memo(({ product, quantity }: BasketItemProps): JSX.Element => {
-  const dispatch = useAppDispatch();
 
   const { id, name, vendorCode, type, level, price, previewImgWebp, previewImgWebp2x, previewImg, previewImg2x } = product;
 
-  const handleButtonClick = () => dispatch(removeItem(id));
+  const handleModalOpen = useHandleModalOpen(id, ModalContent.RemoveItem);
 
   return (
 
@@ -29,7 +28,7 @@ const BasketItem = memo(({ product, quantity }: BasketItemProps): JSX.Element =>
       <BasketItemQuantity id={id} quantity={quantity}/>
       <BasketItemTotalPrice price={price} quantity={quantity}/>
 
-      <button className="cross-btn" type="button" aria-label="Удалить товар" onClick={handleButtonClick}>
+      <button className="cross-btn" type="button" aria-label="Удалить товар" onClick={handleModalOpen}>
         <svg width="10" height="10" aria-hidden="true">
           <use xlinkHref="#icon-close"></use>
         </svg>
